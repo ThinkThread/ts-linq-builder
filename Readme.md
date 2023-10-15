@@ -9,7 +9,7 @@
 To use `QueryBuilder` in your project, you can install it via npm:
 
 ```bash
-npm ts-linq-builder
+npm i ts-linq-builder
 ```
 
 ## Usage
