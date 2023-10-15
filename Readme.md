@@ -1,6 +1,6 @@
 # QueryBuilder
 
-<!-- [![ts-linq-builder](https://img.shields.io/npm/dt/ts-linq-builder.svg)](https://www.npmjs.com/package/ts-linq-builder) -->
+[![ts-linq-builder](https://img.shields.io/npm/dt/ts-linq-builder.svg)](https://www.npmjs.com/package/ts-linq-builder)
 
 `QueryBuilder` is a TypeScript class that provides LINQ-like querying capabilities for collections. It allows you to perform common operations such as `where`, `select`, `join`, `sum`, `average`, `min`, `max`, and more on your data collections.
 
@@ -17,24 +17,42 @@ npm ts-linq-builder
 Here's how you can use QueryBuilder in your TypeScript project:
 
 ```typescript
-import { QueryBuilder } from 'my-query-builder';
+import QueryBuilder from "ts-linq-builder";
 
-const data = [
-  { id: 1, name: 'Alice' },
-  { id: 2, name: 'Bob' },
-  { id: 3, name: 'Charlie' },
-  { id: 4, name: 'David' },
+const users = [
+    { id: 1, name: "John" },
+    { id: 2, name: "Jane" },
 ];
 
-const query = new QueryBuilder(data);
+const userDetails = [
+    { id: 1, age: 30 },
+    { id: 2, age: 20 },
+];
 
-// Perform operations on the data collection
-const result = query
-  .where((item) => item.id % 2 === 0)
-  .select((item) => item.name);
+const queryBuilder = new QueryBuilder(users);
 
-console.log(result); // ['Bob', 'David']
+queryBuilder
+    .join(userDetails, (outer, inner) => outer.id === inner.id, (outer, inner) => {
+        return {
+            id: outer.id,
+            name: outer.name,
+            age: inner.age,
+        };
+    })
+    .forEach(item => console.log(item));    
+
+queryBuilder
+    .where(item => item.id === 1)
+    .select(item => item.name)
+    .forEach(item => console.log(item));
+
+
+console.log(queryBuilder.first());
+console.log(queryBuilder.any());
+console.log(queryBuilder.single());
+console.log(queryBuilder.last());
 ```
+
 ## Example Project
 
 See more [Example](./example)
@@ -43,16 +61,41 @@ See more [Example](./example)
 
 QueryBuilder supports the following operations:
 
-- where: Filters the collection based on a condition.
-- select: Projects the collection to a new shape.
-- join: Joins two collections based on a condition.
-- sum: Calculates the sum of a numeric property.
-- average: Calculates the average of a numeric property.
-- min: Finds the minimum value of a numeric property.
-- max: Finds the maximum value of a numeric property.
-- first: Returns the first element based on a condition.
-- single: Returns a single element based on a condition.
-- last: Returns the last element based on a condition.
+```typescript
+where(filter: FilterFunction<T> | Partial<T>): QueryBuilder<T>;
+select<K>(selector: SelectorFunction<T, K>): K[];
+orderBy(comparator: (a: T, b: T) => number): QueryBuilder<T>;
+orderByDescending(comparator: (a: T, b: T) => number): QueryBuilder<T>;
+groupBy<K extends string | number | symbol>(keySelector: (item: T) => K): Record<K, T[]>;
+skip(count: number): QueryBuilder<T>;
+take(count: number): QueryBuilder<T>;
+distinct(): QueryBuilder<T>;
+count(): number;
+any(): boolean;
+join<U, R>(
+inner: U[],
+condition: (outer: T, inner: U) => boolean,
+resultSelector: (outer: T, inner: U) => R
+): R[];
+first(filter?: (item: T) => boolean): T | undefined;
+single(filter?: (item: T) => boolean): T | undefined;
+last(filter?: (item: T) => boolean): T | undefined;
+sum(selector: (item: T) => number): number;
+average(selector: (item: T) => number): number;
+min(selector: (item: T) => number): number | undefined;
+max(selector: (item: T) => number): number | undefined;
+add(item: T): QueryBuilder<T>;
+remove(item: T): QueryBuilder<T>;
+clear(): QueryBuilder<T>;
+toPromise(): Promise<T[]>;
+toArrayAsync(): Promise<T[]>;
+toArray(): T[];
+toListAsync(): Promise<T[]>;
+toList(): T[];
+map<U>(selector: (item: T) => U): QueryBuilder<U> 
+static from<T>(data: T[]): QueryBuilder<T>;
+static empty<T>(): QueryBuilder<T>;
+```
 
 ## Contributing
 

@@ -150,6 +150,53 @@ class QueryBuilder<T> {
             return value > max ? value : max;
         }, selector(this.data[0]));
     }
+
+    add(item: T): QueryBuilder<T> {
+        this.data.push(item);
+        return this;
+    }
+
+    remove(item: T): QueryBuilder<T> {
+        this.data = this.data.filter((i) => i !== item);
+        return this;
+    }
+
+    clear(): QueryBuilder<T> {
+        this.data = [];
+        return this;
+    }
+
+    toPromise(): Promise<T[]> {
+        return Promise.resolve(this.data);
+    }
+
+    toArrayAsync(): Promise<T[]> {
+        return Promise.resolve(this.data);
+    }
+
+    toArray(): T[] {
+        return this.data;
+    }
+
+    toListAsync(): Promise<T[]> {
+        return Promise.resolve(this.data);
+    }
+
+    toList(): T[] {
+        return this.data;
+    }
+
+    static from<T>(data: T[]): QueryBuilder<T> {
+        return new QueryBuilder(data);
+    }
+
+    static empty<T>(): QueryBuilder<T> {
+        return new QueryBuilder<T>([]);
+    }
+
+    map<U>(selector: (item: T) => U): QueryBuilder<U> {
+        return new QueryBuilder<U>(this.data.map(selector));
+    }
 }
 
 export default QueryBuilder;
