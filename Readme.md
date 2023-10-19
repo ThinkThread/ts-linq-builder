@@ -1,6 +1,7 @@
 # QueryBuilder
 
 [![ts-linq-builder](https://img.shields.io/npm/dt/ts-linq-builder.svg)](https://www.npmjs.com/package/ts-linq-builder)
+[![Socket Badge](https://socket.dev/api/badge/npm/package/ts-linq-builder)](https://socket.dev/npm/package/ts-linq-builder)
 
 `QueryBuilder` is a TypeScript class that provides LINQ-like querying capabilities for collections. It allows you to perform common operations such as `where`, `select`, `join`, `sum`, `average`, `min`, `max`, and more on your data collections.
 
