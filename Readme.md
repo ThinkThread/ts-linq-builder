@@ -1,6 +1,14 @@
 # QueryBuilder
 
-<!-- [![ts-linq-builder](https://img.shields.io/npm/dt/ts-linq-builder.svg)](https://www.npmjs.com/package/ts-linq-builder) -->
+[![ts-linq-builder](https://img.shields.io/npm/dt/ts-linq-builder.svg)](https://www.npmjs.com/package/ts-linq-builder)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=thinkthread_ts-linq-builder&metric=bugs)](https://sonarcloud.io/summary/new_code?id=thinkthread_ts-linq-builder)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=thinkthread_ts-linq-builder&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=thinkthread_ts-linq-builder)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=thinkthread_ts-linq-builder&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=thinkthread_ts-linq-builder)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=thinkthread_ts-linq-builder&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=thinkthread_ts-linq-builder)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=thinkthread_ts-linq-builder&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=thinkthread_ts-linq-builder)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=thinkthread_ts-linq-builder&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=thinkthread_ts-linq-builder)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=thinkthread_ts-linq-builder&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=thinkthread_ts-linq-builder)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=thinkthread_ts-linq-builder&metric=coverage)](https://sonarcloud.io/summary/new_code?id=thinkthread_ts-linq-builder)
 
 `QueryBuilder` is a TypeScript class that provides LINQ-like querying capabilities for collections. It allows you to perform common operations such as `where`, `select`, `join`, `sum`, `average`, `min`, `max`, and more on your data collections.
 

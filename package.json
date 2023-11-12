@@ -9,7 +9,7 @@
     "start": "node dist/index.js",
     "tsc": "tsc",
     "test": "jest",
-    "coverage": "jest --coverage"
+    "test:coverage": "jest --coverage"
   },
   "keywords": [
     "typescript",
