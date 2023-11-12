@@ -26,3 +26,9 @@ queryBuilder
     .where(item => item.id === 1)
     .select(item => item.name)
     .forEach(item => console.log(item));
+
+
+console.log(queryBuilder.first());
+console.log(queryBuilder.any());
+console.log(queryBuilder.single());
+console.log(queryBuilder.last());

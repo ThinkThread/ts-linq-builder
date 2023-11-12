@@ -14,7 +14,11 @@ declare module 'ts-linq-builder' {
         distinct(): QueryBuilder<T>;
         count(): number;
         any(): boolean;
-        join<U, R>(inner: U[], condition: (outer: T, inner: U) => boolean, resultSelector: (outer: T, inner: U) => R): R[]
+        join<U, R>(
+          inner: U[],
+          condition: (outer: T, inner: U) => boolean,
+          resultSelector: (outer: T, inner: U) => R
+        ): R[];
         first(filter?: (item: T) => boolean): T | undefined;
         single(filter?: (item: T) => boolean): T | undefined;
         last(filter?: (item: T) => boolean): T | undefined;
@@ -22,7 +26,18 @@ declare module 'ts-linq-builder' {
         average(selector: (item: T) => number): number;
         min(selector: (item: T) => number): number | undefined;
         max(selector: (item: T) => number): number | undefined;
+        add(item: T): QueryBuilder<T>;
+        remove(item: T): QueryBuilder<T>;
+        clear(): QueryBuilder<T>;
+        toPromise(): Promise<T[]>;
+        toArrayAsync(): Promise<T[]>;
+        toArray(): T[];
+        toListAsync(): Promise<T[]>;
+        toList(): T[];
+        map<U>(selector: (item: T) => U): QueryBuilder<U> 
+        static from<T>(data: T[]): QueryBuilder<T>;
+        static empty<T>(): QueryBuilder<T>;
     }
-    
+
     export default QueryBuilder
   }
